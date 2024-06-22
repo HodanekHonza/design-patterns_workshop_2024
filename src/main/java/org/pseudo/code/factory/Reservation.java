@@ -21,6 +21,6 @@ public class Reservation {
     }
 
     public void assignRoom() {
-        room.setOccupied(startDate, endDate);
+        room.setOccupied(endDate);
     }
 }

@@ -1,8 +1,7 @@
 package org.pseudo.code;
 
+import org.pseudo.code.command.CommandService;
 import org.pseudo.code.command.ReservationInfo;
-import org.pseudo.code.singleton.HotelService;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -10,7 +9,6 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static final HotelService hotel = HotelService.getInstance();
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -43,7 +41,6 @@ public class Main {
     private static void makeReservation() {
         Scanner scanner = new Scanner(System.in);
 
-        // Simulate gathering reservation information
         System.out.println("Enter guest name:");
         String guestName = scanner.nextLine();
 
@@ -60,11 +57,23 @@ public class Main {
             Date checkInDate = dateFormat.parse(checkInDateStr);
             Date checkOutDate = dateFormat.parse(checkOutDateStr);
 
+
+
+
+
             // Create a ReservationInfo object with the provided details
             ReservationInfo reservationInfo = new ReservationInfo(guestName, needsParking, checkInDate, checkOutDate);
+            // creating the reservation with command service, first sending the reservation info
+            CommandService commandService = new CommandService(reservationInfo);
+            // execute command which will call HotelService and use method makeReservation()
+            commandService.execute();
 
-            // Make the reservation using the hotel instance
-            hotel.makeReservation(reservationInfo);
+
+
+
+
+
+
 
             System.out.println("Reservation successfully made for " + guestName + "!");
         } catch (ParseException e) {
