@@ -1,4 +1,7 @@
-package org.example;
+package org.pseudo.code;
+
+import org.pseudo.code.command.ReservationInfo;
+import org.pseudo.code.singleton.HotelService;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -7,7 +10,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static final Hotel hotel = Hotel.getInstance();
+    private static final HotelService hotel = HotelService.getInstance();
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -43,9 +46,6 @@ public class Main {
         // Simulate gathering reservation information
         System.out.println("Enter guest name:");
         String guestName = scanner.nextLine();
-
-        System.out.println("Enter room type:");
-        String roomType = scanner.nextLine();
 
         System.out.println("Do you need parking? (yes/no):");
         boolean needsParking = scanner.nextLine().equalsIgnoreCase("yes");

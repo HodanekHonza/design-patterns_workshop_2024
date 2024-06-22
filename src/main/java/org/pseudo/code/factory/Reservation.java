@@ -1,17 +1,18 @@
-package org.example;
+package org.pseudo.code.factory;
+
+import org.pseudo.code.facade.Room;
 
 import java.util.Date;
 
-// Reservation Class
 public class Reservation {
     private String guest;
     private Room room;
 
-    private ParkingSlot parkingSlot;
+    private Boolean parkingSlot;
     private Date startDate;
     private Date endDate;
 
-    public Reservation(String guest, Room room, ParkingSlot parkingSlot, Date startDate, Date endDate) {
+    public Reservation(String guest, Room room, Boolean parkingSlot, Date startDate, Date endDate) {
         this.guest = guest;
         this.room = room;
         this.parkingSlot = parkingSlot;

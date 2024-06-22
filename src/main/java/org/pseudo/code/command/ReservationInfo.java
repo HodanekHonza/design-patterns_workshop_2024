@@ -1,4 +1,4 @@
-package org.example;
+package org.pseudo.code.command;
 
 import java.util.Date;
 
