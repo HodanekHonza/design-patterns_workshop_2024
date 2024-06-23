@@ -1,6 +1,6 @@
 package org.pseudo.code;
 
-import org.pseudo.code.command.CommandService;
+import org.pseudo.code.command.impl.CommandImpl;
 import org.pseudo.code.command.ReservationInfo;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -64,7 +64,7 @@ public class Main {
             // Create a ReservationInfo object with the provided details
             ReservationInfo reservationInfo = new ReservationInfo(guestName, needsParking, checkInDate, checkOutDate);
             // creating the reservation with command service, first sending the reservation info
-            CommandService commandService = new CommandService(reservationInfo);
+            CommandImpl commandService = new CommandImpl(reservationInfo);
             // execute command which will call HotelService and use method makeReservation()
             commandService.execute();
 
