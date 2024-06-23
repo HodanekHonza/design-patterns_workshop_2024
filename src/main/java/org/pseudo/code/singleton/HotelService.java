@@ -1,10 +1,9 @@
 package org.pseudo.code.singleton;
 
-import org.pseudo.code.factory.impl.ConcreteReservationFactoryWithParking;
+import org.pseudo.code.factory.impl.*;
 import org.pseudo.code.factory.Reservation;
 import org.pseudo.code.factory.ReservationFactory;
 import org.pseudo.code.command.ReservationInfo;
-import org.pseudo.code.factory.impl.ConcreteReservationFactoryWithoutParking;
 
 public class HotelService {
     private static HotelService instance;
@@ -21,11 +20,29 @@ public class HotelService {
 
     public void makeReservation(ReservationInfo reservationInfo) {
         ReservationFactory factory;
-        if (reservationInfo.needsParking()) {
-            factory = new ConcreteReservationFactoryWithParking();
-        } else {
-            factory = new ConcreteReservationFactoryWithoutParking();
+
+        String roomType = reservationInfo.getRoomType();
+        boolean needsParking = reservationInfo.needsParking();
+
+        switch (roomType.toLowerCase()) {
+            case "basic":
+                if (needsParking) {
+                    factory = new ConcreteReservationFactoryBasicWithParking();
+                } else {
+                    factory = new ConcreteReservationFactoryBasicWithoutParking();
+                }
+                break;
+            case "suite":
+                if (needsParking) {
+                    factory = new ConcreteReservationFactorySuiteWithParking();
+                } else {
+                    factory = new ConcreteReservationFactorySuiteWithoutParking();
+                }
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown room type: " + roomType);
         }
+
         Reservation reservation = factory.createReservation(reservationInfo);
         reservation.assignRoom();
     }

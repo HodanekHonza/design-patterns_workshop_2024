@@ -7,6 +7,7 @@ public class Room {
     private CleaningServiceFacade cleaningServiceFacade;
     private final UUID rooomUUID;
     private boolean occupied;
+    private RoomCard card;
 
     public Room(String roomType) {
         this.cleaningServiceFacade = new CleaningServiceFacade();
